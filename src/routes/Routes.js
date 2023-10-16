@@ -12,6 +12,12 @@ export const Auth = ()=>{
              component={Login} 
              header={null}
              options={{headerShown: false}}/>
+              <Stack.Screen 
+            name="Home"
+            component={Home}
+            header={null}
+            options={{headerShown:false}}
+            />
         </Stack.Navigator>
     )
 }
@@ -35,10 +41,8 @@ const Routes=()=>{
     console.log("AUTH",authToken)
     return(
         <NavigationContainer>
-            {authToken==null?
         <Auth />
-        :<Dashbord />
-            }
+       
         </NavigationContainer>
     )
 }

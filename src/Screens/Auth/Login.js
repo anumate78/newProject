@@ -5,40 +5,41 @@ import {useDispatch} from 'react-redux'
 import { login } from '../../reducers/authReducer/AuthAction';
 import RazorpayCheckout, { RazorpayOptions, RazorpaySuccessResponse, RazorpayErrorResponse } from 'react-native-razorpay'; // Make sure to import the appropriate package for your environment
 
-const Login: React.FC = () => {
+const Login= ({navigation}) => {
     const dispatch = useDispatch()
     
     const [name, setName] = useState('')
     const [authToken,setAuthToken]=useState('')
 
     const loginButton = ()=>{
-        const options: RazorpayOptions = {
-            description: 'Credits towards consultation',
-            image: 'https://i.imgur.com/3g7nmJC.png',
-            currency: 'INR',
-            key: 'rzp_test_F4FcJwCA5MKVsE', // Your API key
-            amount: '5000',
-            name: 'foo',
-            prefill: {
-              email: 'void@razorpay.com',
-              contact: '9191919191',
-              name: 'Razorpay Software',
-            },
-            theme: { color: '#F37254' },
-          };
+        // const options: RazorpayOptions = {
+        //     description: 'Credits towards consultation',
+        //     image: 'https://i.imgur.com/3g7nmJC.png',
+        //     currency: 'INR',
+        //     key: 'rzp_test_F4FcJwCA5MKVsE', // Your API key
+        //     amount: '5000',
+        //     name: 'foo',
+        //     prefill: {
+        //       email: 'void@razorpay.com',
+        //       contact: '9191919191',
+        //       name: 'Razorpay Software',
+        //     },
+        //     theme: { color: '#F37254' },
+        //   };
           
-          // Open the Razorpay checkout
-          RazorpayCheckout.open(options)
-            .then((data: RazorpaySuccessResponse) => {
-              // Handle success
-              console.log(`Success: ${data.razorpay_payment_id}`);
-            })
-            .catch((error: RazorpayErrorResponse) => {
-              // Handle failure
-              console.log(`Error: ${error.code} | ${error.description}`);
-            });
+        //   // Open the Razorpay checkout
+        //   RazorpayCheckout.open(options)
+        //     .then((data: RazorpaySuccessResponse) => {
+        //       // Handle success
+        //       console.log(`Success: ${data.razorpay_payment_id}`);
+        //     })
+        //     .catch((error: RazorpayErrorResponse) => {
+        //       // Handle failure
+        //       console.log(`Error: ${error.code} | ${error.description}`);
+        //     });
           
         dispatch(login(name,authToken))
+        navigation.navigate('Home')
     }
 
     return (
