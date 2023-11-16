@@ -31,14 +31,14 @@ const Home = () => {
   // }, []);
 
   return (
-<View
+<View 
         style={{
           minHeight: 250,
           justifyContent: 'center',
           width: '100%',
           position: 'relative',
         }}>
-            <MapView
+          <MapView
         style={styles.map}
         initialRegion={{
           latitude: currentLocation?.latitude,
@@ -55,17 +55,15 @@ const Home = () => {
           strokeColor="hotpink"
           optimizeWaypoints={true} // Enable alternative routes
           onReady={(result) => {
-            console.log(`Distance: ${result.distance} km`);
-            console.log(`Duration: ${result.duration} min`);
+            console.log(`Distance: ${result?.distance} km`);
+            console.log(`Duration: ${result?.duration} min`);
           }}
-        
         />
 {currentLocation && (
           <Marker
           draggable
           onDrag={(e) => {
-            setCurrentLocation({ latitude:e.nativeEvent.coordinate.latitude, longitude:e.nativeEvent.coordinate.longitude });
-
+            setCurrentLocation({ latitude:e?.nativeEvent?.coordinate?.latitude, longitude:e.nativeEvent.coordinate.longitude });
             console.log(e.nativeEvent.coordinate)
           }}
             coordinate={currentLocation}
